@@ -1,0 +1,46 @@
+{
+    "characters": [
+        "a", "i", "u", "e", "o",
+        "ga", "gi", "gu", "ge", "go",
+        "ka", "ki", "ku", "ke", "ko",
+        "za", "zu", "ze", "zo",
+        "sa", "su", "se", "so",
+        "da", "de", "do",
+        "ta", "tsu", "te", "to",
+        "ba", "bi", "bu", "be", "bo",
+        "na", "ni", "nu", "ne", "no",
+        "pa", "pi", "pu", "pe", "po",
+        "hi", "fu", "he", "ho",
+        "ma", "mi", "mu", "me", "mo",
+        "ya", "yu", "yo", "wa", "n",
+        "ra", "ri", "ru", "re", "ro",
+        "kya", "kyu", "kyo",
+        "sha", "shi", "shu", "sho",
+        "cha", "chi", "chu", "cho",
+        "nya", "nyu", "nyo",
+        "hya", "hyu", "hyo",
+        "mya", "myu", "myo",
+        "rya", "ryu", "tyo",
+        "gya", "gyu", "gyo",
+        "ja", "ji", "ju", "jo",
+        "bya", "byu", "byo",
+        "pya", "pyu", "pyo"
+    ],
+    "words":{
+        "hello": {
+            "english": "Hello",
+            "japanese": "Konnichiwa",
+            "hirogana": ["ko","n","ni","chi","wa"]
+        },
+        "goodbye": {
+            "english": "Goodbye",
+            "japanese": "Sayonara",
+            "hirogana": ["sa", "yo", "na", "ra"]
+        },
+        "excuse": {
+            "english": "Excuse me / I'm sorry",
+            "japanese": "Sumimasen",
+            "hirogana": ["su", "mi", "ma", "se", "n"]
+        }
+    }
+}
