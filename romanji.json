@@ -30,17 +30,17 @@
         "hello": {
             "english": "Hello",
             "japanese": "Konnichiwa",
-            "hirogana": ["ko","n","ni","chi","wa"]
+            "hiragana": ["ko","n","ni","chi","wa"]
         },
         "goodbye": {
             "english": "Goodbye",
             "japanese": "Sayonara",
-            "hirogana": ["sa", "yo", "na", "ra"]
+            "hiragana": ["sa", "yo", "na", "ra"]
         },
         "excuse": {
             "english": "Excuse me / I'm sorry",
             "japanese": "Sumimasen",
-            "hirogana": ["su", "mi", "ma", "se", "n"]
+            "hiragana": ["su", "mi", "ma", "se", "n"]
         }
     }
 }

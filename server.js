@@ -26,8 +26,14 @@ app.get('/', (req, res) => {
 
 app.get('/:word', (req, res) => {
     const {word} = req.params;
-    else {res.render('word', { data: global.romanji.words[word] });}
     if(word == '' || !Reflect.ownKeys(global.romanji.words).includes(word)) {res.render('index', {data: global.romanji.words})}
+    else {
+        const wordHiragana = global.romanji.words[word].hiragana;
+        const randomHiragana = shuffleArray(global.romanji.characters);
+        const limitedRandomHiragana = randomHiragana.slice(0, Math.ceil(wordHiragana.length* 1.5));
+        const assortedHiragana = shuffleArray(wordHiragana.concat(limitedRandomHiragana));
+        res.render('word', { data: global.romanji.words[word], hiragana: assortedHiragana });
+    }
 })
 
 app.post('/', (req, res) => {
