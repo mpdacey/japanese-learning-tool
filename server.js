@@ -2,22 +2,26 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+app.set('view engine', 'ejs');
+app.set('views', 'public');
+
 app.use(express.static('public'));
 app.use(express.json());
 
 const romanji = require('./romanji.json');
 global.romanji = romanji;
 
-app.get('/info/:dynamic', (req, res) => {
-    const {dynamic} = req.params;
-    const {key} = req.query;
+app.get('/', (req, res) => {
+    //const {dynamic} = req.params;
+    //const {key} = req.query;
 
     const keys = Object.keys(global.romanji.words);
     const randIndex = Math.floor(Math.random() * keys.length);
     const randomKey = keys[randIndex];
 
-    console.log(dynamic, key, global.romanji.words[randomKey])
-    res.status(200).json({info: global.romanji.words[randomKey].english});
+    console.log(global.romanji.words)
+    res.render('index', {data: global.romanji.words});
+    //res.status(200).json({info: global.romanji.words[randomKey].english});
 })
 
 app.post('/', (req, res) => {

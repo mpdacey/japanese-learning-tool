@@ -7,11 +7,23 @@
 </head>
 <body>
     <form action="">
-        <input type="text" id="input" />
+        <input type="text" id="input" placeholder="<%=data%>">
         <button id="get">GET</button>
         <button id="post">POST</button>
     </form>
-    <script>
+    <ul>
+        <table>
+        <% Object.keys(data).forEach((x) => { %>
+            <tr>
+            <% Object.keys(data[x].hirogana).forEach((y) => { %>
+                <td><%= data[x].hirogana[y] %></td>
+            <% }) %>
+            </tr>
+        <% }) %>
+        </table>
+    </ul>
+    <script type='text/javascript'>
+
         const getBtn = document.getElementById('get')
         const postBtn = document.getElementById('post')
         const input = document.getElementById('input')
