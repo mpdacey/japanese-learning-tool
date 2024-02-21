@@ -12,14 +12,37 @@
           border: 1px solid #aaaaaa;
           text-align: center;
         }
-        </style>
+    </style>
+    <script>
+        function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            e.dataTransfer.setData("text", e.target.id);
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            var targetID = e.target.id;
+            const sourceID = e.dataTransfer.getData("text");
+            if(targetID == null || targetID == "") {targetID = e.target.parentElement.id;}
+            
+            var target = document.getElementById(targetID);
+            var source = document.getElementById(sourceID);
+
+            var temp = target.innerHTML;
+            target.innerHTML= source.innerHTML;
+            source.innerHTML = temp;
+        }
+    </script>
 </head>
 <body>
     <h1><%= data.english %></h1>
     <table>
         <tr>
-        <% data.hiragana.forEach((x) => {%>
-            <td draggable="true"></td>
+        <% data.hiragana.forEach((x, i) => {%>
+            <td id="slot-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"><span></td>
         <% }) %>
         </tr>
     </table>
@@ -27,12 +50,16 @@
     <table>
         <tr>
         <% for(var i = 0; i < Math.ceil(hiragana.length/2); i++) { %>
-            <td draggable="true"><%=hiragana[i]%></td>
+            <td id="bin-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <span><%=hiragana[i]%></span>
+            </td>
         <% } %>
         </tr>
         <tr>
         <% for(var i = Math.ceil(hiragana.length/2); i < hiragana.length; i++) { %>
-            <td draggable="true"><%=hiragana[i]%></td>
+            <td id="bin-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <span><%=hiragana[i]%></span>
+            </td>
         <% } %>
         </tr>
     </table>
