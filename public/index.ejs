@@ -11,17 +11,13 @@
         <button id="get">GET</button>
         <button id="post">POST</button>
     </form>
-    <ul>
-        <table>
-        <% Object.keys(data).forEach((x) => { %>
-            <tr>
-            <% Object.keys(data[x].hirogana).forEach((y) => { %>
-                <td><%= data[x].hirogana[y] %></td>
-            <% }) %>
-            </tr>
+    <table>
+        <tr>
+        <% Object.keys(data.hirogana).forEach((y) => { %>
+            <td><%= data.hirogana[y] %></td>
         <% }) %>
-        </table>
-    </ul>
+        </tr>
+    </table>
     <script type='text/javascript'>
 
         const getBtn = document.getElementById('get')

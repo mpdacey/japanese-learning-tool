@@ -20,8 +20,14 @@ app.get('/', (req, res) => {
     const randomKey = keys[randIndex];
 
     console.log(global.romanji.words)
-    res.render('index', {data: global.romanji.words});
+    res.render('index', {data: global.romanji.words[randomKey]});
     //res.status(200).json({info: global.romanji.words[randomKey].english});
+})
+
+app.get('/:word', (req, res) => {
+    const {word} = req.params;
+    if(word == '' || !Reflect.ownKeys(global.romanji.words).includes(word)) {res.render('index', {data: global.romanji.words["hello"]})}
+    else {res.render('word', { data: global.romanji.words[word] });}
 })
 
 app.post('/', (req, res) => {
