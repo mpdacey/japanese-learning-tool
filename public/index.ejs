@@ -6,16 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
+    <!--<form action="">
         <input type="text" id="input" placeholder="<%=data%>">
         <button id="get">GET</button>
         <button id="post">POST</button>
-    </form>
+    </form>-->
+    <ul>
+        <% Object.keys(data).forEach((y) => { %>
+        <li>
+            <a href="http://localhost:3000/<%=y%>"><%=data[y].english%></a>
+        </li>
+        <% }) %>
+    </ul>
     <table>
         <tr>
-        <% Object.keys(data.hirogana).forEach((y) => { %>
-            <td><%= data.hirogana[y] %></td>
-        <% }) %>
+        <% //Object.keys(data.hirogana).forEach((y) => { %>
+            <td><%= //data.hirogana[y] %></td>
+        <% //}) %>
         </tr>
     </table>
     <script type='text/javascript'>

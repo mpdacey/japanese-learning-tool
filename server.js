@@ -20,14 +20,14 @@ app.get('/', (req, res) => {
     const randomKey = keys[randIndex];
 
     console.log(global.romanji.words)
-    res.render('index', {data: global.romanji.words[randomKey]});
+    res.render('index', {data: global.romanji.words});
     //res.status(200).json({info: global.romanji.words[randomKey].english});
 })
 
 app.get('/:word', (req, res) => {
     const {word} = req.params;
-    if(word == '' || !Reflect.ownKeys(global.romanji.words).includes(word)) {res.render('index', {data: global.romanji.words["hello"]})}
     else {res.render('word', { data: global.romanji.words[word] });}
+    if(word == '' || !Reflect.ownKeys(global.romanji.words).includes(word)) {res.render('index', {data: global.romanji.words})}
 })
 
 app.post('/', (req, res) => {
@@ -43,3 +43,12 @@ app.post('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}/`);
 });
+
+// Shuffle method: https://www.tutorialspoint.com/How-to-randomize-shuffle-a-JavaScript-array
+function shuffleArray(array) {
+    for(var i = array.length-1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
