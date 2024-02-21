@@ -4,10 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Japanese Training</title>
+    <style>
+        td {
+          width: 50px;
+          height: 50px;
+          padding: 10px;
+          border: 1px solid #aaaaaa;
+          text-align: center;
+        }
+        </style>
 </head>
 <body>
     <h1><%= data.english %></h1>
-    <% list = hiragana %>
-    <%= list %>
+    <table>
+        <tr>
+        <% data.hiragana.forEach((x) => {%>
+            <td draggable="true"></td>
+        <% }) %>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+        <% for(var i = 0; i < Math.ceil(hiragana.length/2); i++) { %>
+            <td draggable="true"><%=hiragana[i]%></td>
+        <% } %>
+        </tr>
+        <tr>
+        <% for(var i = Math.ceil(hiragana.length/2); i < hiragana.length; i++) { %>
+            <td draggable="true"><%=hiragana[i]%></td>
+        <% } %>
+        </tr>
+    </table>
 </body>
 </html>
