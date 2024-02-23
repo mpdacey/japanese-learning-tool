@@ -13,6 +13,36 @@
           text-align: center;
         }
     </style>
+    
+</head>
+<body>
+    <h1><%= data.english %></h1>
+    <table>
+        <tr>
+        <% data.hiragana.forEach((x, i) => {%>
+            <td class="slot" id="slot-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"><span></td>
+        <% }) %>
+        </tr>
+    </table>
+    <br/>
+    <table>
+        <tr>
+        <% for(var i = 0; i < Math.ceil(hiragana.length/2); i++) { %>
+            <td id="bin-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <span><%=hiragana[i]%></span>
+            </td>
+        <% } %>
+        </tr>
+        <tr>
+        <% for(var i = Math.ceil(hiragana.length/2); i < hiragana.length; i++) { %>
+            <td id="bin-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <span><%=hiragana[i]%></span>
+            </td>
+        <% } %>
+        </tr>
+    </table>
+    <br/>
+    <button id="verify">Submit</button>
     <script>
         function allowDrop(e) {
             e.preventDefault();
@@ -35,33 +65,22 @@
             target.innerHTML= source.innerHTML;
             source.innerHTML = temp;
         }
+
+        const submitBtn = document.getElementById('verify');
+        submitBtn.addEventListener('click', verify)
+        async function verify(e){
+            e.preventDefault();
+            const slots = document.getElementsByClassName("slot");
+            const wordData = <%- JSON.stringify(data) %>;
+
+            for(var i = 0; i < slots.length; i++){
+                if(slots[i].firstElementChild.innerHTML != wordData.hiragana[i]){
+                    console.log("Wrong");
+                    return;
+                }
+            };
+            console.log("Correct");
+        }
     </script>
-</head>
-<body>
-    <h1><%= data.english %></h1>
-    <table>
-        <tr>
-        <% data.hiragana.forEach((x, i) => {%>
-            <td id="slot-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)"><span></td>
-        <% }) %>
-        </tr>
-    </table>
-    <br/>
-    <table>
-        <tr>
-        <% for(var i = 0; i < Math.ceil(hiragana.length/2); i++) { %>
-            <td id="bin-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <span><%=hiragana[i]%></span>
-            </td>
-        <% } %>
-        </tr>
-        <tr>
-        <% for(var i = Math.ceil(hiragana.length/2); i < hiragana.length; i++) { %>
-            <td id="bin-<%=i%>" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <span><%=hiragana[i]%></span>
-            </td>
-        <% } %>
-        </tr>
-    </table>
 </body>
 </html>
