@@ -12,6 +12,14 @@
           border: 1px solid #aaaaaa;
           text-align: center;
         }
+
+        .correct {
+            color: green;
+        }
+
+        .wrong {
+            color: rgb(212, 16, 16);
+        }
     </style>
     
 </head>
@@ -43,6 +51,10 @@
     </table>
     <br/>
     <button id="verify">Submit</button>
+    <div>
+        <h3 id="correct-text" class="correct" hidden>Correct!</h3>
+        <h3 id="wrong-text" class="wrong" hidden>Wrong! Try again.</h3>
+    </div>
     <script>
         function allowDrop(e) {
             e.preventDefault();
@@ -67,6 +79,14 @@
         }
 
         const submitBtn = document.getElementById('verify');
+        const correctText = document.getElementById('correct-text');
+        const wrongText = document.getElementById('wrong-text');
+
+        function toggleCorrectText(isCorrect){
+            correctText.hidden = !isCorrect;
+            wrongText.hidden = isCorrect;
+        }
+
         submitBtn.addEventListener('click', verify)
         async function verify(e){
             e.preventDefault();
@@ -75,11 +95,11 @@
 
             for(var i = 0; i < slots.length; i++){
                 if(slots[i].firstElementChild.innerHTML != wordData.hiragana[i]){
-                    console.log("Wrong");
+                    toggleCorrectText(false);
                     return;
                 }
             };
-            console.log("Correct");
+            toggleCorrectText(true);
         }
     </script>
 </body>
